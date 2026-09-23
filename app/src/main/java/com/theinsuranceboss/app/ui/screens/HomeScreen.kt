@@ -25,6 +25,10 @@ import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.CardMembership
 import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.CardGiftcard
+import androidx.compose.material.icons.filled.Forum
+import androidx.compose.material.icons.filled.Groups
+import androidx.compose.material.icons.filled.Newspaper
+import androidx.compose.material.icons.filled.AdminPanelSettings
 import androidx.compose.material.icons.filled.Quiz
 import androidx.compose.material.icons.filled.RequestQuote
 import androidx.compose.material.icons.filled.School
@@ -146,6 +150,10 @@ fun HomeScreen(
             Triple("Refer a Friend", "Share your code", Icons.Default.CardGiftcard to Routes.REFERRAL),
             Triple("Claims Guide", "After an accident", Icons.Default.Quiz to Routes.CLAIMS),
             Triple("Learn", "Tips from the Boss", Icons.Default.School to Routes.LEARN),
+            Triple("Chat", "Ask the Insurance Boss", Icons.Default.Forum to Routes.CHAT),
+            Triple("News", "From theinsuranceboss.com", Icons.Default.Newspaper to Routes.NEWS),
+            Triple("For Agents", "Request hub access", Icons.Default.Groups to Routes.AGENTS),
+            Triple("Admin", "Password-gated leads", Icons.Default.AdminPanelSettings to Routes.ADMIN),
             Triple(if (userName == null) "Login / Sign up" else "Account", if (userName == null) "Same account as the web" else userName, Icons.Default.School to Routes.AUTH),
         )
 

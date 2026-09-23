@@ -19,4 +19,8 @@ object Routes {
     const val AUTH = "auth"
     const val LOGIN = "login"
     const val SIGNUP = "signup"
+    const val CHAT = "chat"
+    const val NEWS = "news"
+    const val AGENTS = "agents"
+    const val ADMIN = "admin"
 }

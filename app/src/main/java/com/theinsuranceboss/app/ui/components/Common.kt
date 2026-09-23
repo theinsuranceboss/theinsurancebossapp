@@ -37,7 +37,7 @@ import com.theinsuranceboss.app.ui.theme.BossBorder
 import com.theinsuranceboss.app.ui.theme.BossGold
 import com.theinsuranceboss.app.ui.theme.BossMuted
 import com.theinsuranceboss.app.ui.theme.BossSurface
-import com.theinsuranceboss.app.ui.theme.LeagueSpartan
+import com.theinsuranceboss.app.ui.theme.JetBrainsMono
 
 @Composable
 fun BossCard(
@@ -125,7 +125,7 @@ fun SectionLabel(text: String, modifier: Modifier = Modifier) {
         modifier = modifier,
         style = MaterialTheme.typography.labelSmall,
         color = BossGold,
-        fontFamily = LeagueSpartan,
+        fontFamily = JetBrainsMono,
     )
 }
 

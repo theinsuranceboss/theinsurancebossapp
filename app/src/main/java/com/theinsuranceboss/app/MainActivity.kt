@@ -26,13 +26,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.theinsuranceboss.app.ui.nav.Routes
 import com.theinsuranceboss.app.ui.screens.AuthScreen
+import com.theinsuranceboss.app.ui.screens.AdminScreen
+import com.theinsuranceboss.app.ui.screens.AgentsScreen
 import com.theinsuranceboss.app.ui.screens.AuditScreen
 import com.theinsuranceboss.app.ui.screens.BookCallScreen
 import com.theinsuranceboss.app.ui.screens.CalculatorScreen
+import com.theinsuranceboss.app.ui.screens.ChatScreen
 import com.theinsuranceboss.app.ui.screens.ClaimsScreen
 import com.theinsuranceboss.app.ui.screens.HomeScreen
 import com.theinsuranceboss.app.ui.screens.LearnScreen
 import com.theinsuranceboss.app.ui.screens.NeedsScreen
+import com.theinsuranceboss.app.ui.screens.NewsScreen
 import com.theinsuranceboss.app.ui.screens.OnboardingScreen
 import com.theinsuranceboss.app.ui.screens.QuoteScreen
 import com.theinsuranceboss.app.ui.screens.ReferralScreen
@@ -78,6 +82,12 @@ private fun BossNav(vm: MainViewModel) {
     val content by vm.content.collectAsState()
     val auth by vm.auth.collectAsState()
     val addPolicy by vm.addPolicy.collectAsState()
+    val chatItems by vm.chatItems.collectAsState()
+    val chatThinking by vm.chatThinking.collectAsState()
+    val chatError by vm.chatError.collectAsState()
+    val news by vm.news.collectAsState()
+    val adminLeads by vm.adminLeads.collectAsState()
+    val agentRequest by vm.agentRequest.collectAsState()
 
     var onboardDone by remember { mutableStateOf(false) }
 
@@ -307,6 +317,47 @@ private fun BossNav(vm: MainViewModel) {
                             popUpTo(Routes.HOME) { inclusive = true }
                         }
                     },
+                )
+            }
+            composable(Routes.CHAT) {
+                LaunchedEffect(Unit) {
+                    vm.setChatUser(user?.fullName ?: user?.username, user?.email)
+                }
+                ChatScreen(
+                    chatItems = chatItems,
+                    thinking = chatThinking,
+                    error = chatError,
+                    onBack = { nav.popBackStack() },
+                    onSend = { msg -> vm.sendChat(msg) },
+                    onReset = { vm.resetChat() },
+                    onUserReady = { name, email -> vm.setChatUser(name, email) },
+                )
+            }
+            composable(Routes.NEWS) {
+                LaunchedEffect(Unit) { vm.loadNews() }
+                NewsScreen(
+                    state = news,
+                    onBack = { nav.popBackStack() },
+                    onRetry = { vm.loadNews() },
+                )
+            }
+            composable(Routes.AGENTS) {
+                AgentsScreen(
+                    requestState = agentRequest,
+                    onBack = { nav.popBackStack() },
+                    onSubmit = { name, email, phone, notes ->
+                        vm.submitAgentRequest(name, email, phone, notes)
+                    },
+                    onReset = { vm.resetAgentRequest() },
+                    onOpenLogin = { nav.navigate(Routes.AUTH) },
+                )
+            }
+            composable(Routes.ADMIN) {
+                AdminScreen(
+                    leadsState = adminLeads,
+                    onBack = { nav.popBackStack() },
+                    onLoad = { password -> vm.loadAdminLeads(password) },
+                    onReset = { vm.resetAdminLeads() },
                 )
             }
         }

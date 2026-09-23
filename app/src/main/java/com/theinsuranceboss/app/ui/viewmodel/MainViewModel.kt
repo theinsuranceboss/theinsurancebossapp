@@ -253,4 +253,91 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             }
         }
     }
+
+    data class ChatItem(val role: String, val text: String)
+
+    private val _chatItems = MutableStateFlow<List<ChatItem>>(emptyList())
+    val chatItems: StateFlow<List<ChatItem>> = _chatItems.asStateFlow()
+
+    private val _chatThinking = MutableStateFlow(false)
+    val chatThinking: StateFlow<Boolean> = _chatThinking.asStateFlow()
+
+    private val _chatError = MutableStateFlow<String?>(null)
+    val chatError: StateFlow<String?> = _chatError.asStateFlow()
+
+    private val _news = MutableStateFlow<UiState<com.theinsuranceboss.app.data.api.NewsResponse>>(UiState())
+    val news: StateFlow<UiState<com.theinsuranceboss.app.data.api.NewsResponse>> = _news.asStateFlow()
+
+    private val _adminLeads = MutableStateFlow<UiState<List<com.theinsuranceboss.app.data.api.LeadDto>>>(UiState())
+    val adminLeads: StateFlow<UiState<List<com.theinsuranceboss.app.data.api.LeadDto>>> = _adminLeads.asStateFlow()
+
+    private val _agentRequest = MutableStateFlow<UiState<Boolean>>(UiState())
+    val agentRequest: StateFlow<UiState<Boolean>> = _agentRequest.asStateFlow()
+
+    private var chatName: String? = null
+    private var chatEmail: String? = null
+
+    fun setChatUser(name: String?, email: String?) {
+        if (!name.isNullOrBlank()) chatName = name
+        if (!email.isNullOrBlank()) chatEmail = email
+    }
+
+    fun resetChat() {
+        _chatItems.value = emptyList()
+        _chatThinking.value = false
+        _chatError.value = null
+    }
+
+    fun sendChat(message: String) {
+        val text = message.trim()
+        if (text.isEmpty() || _chatThinking.value) return
+        val history = _chatItems.value.map { com.theinsuranceboss.app.data.api.ChatMessageDto(it.role, it.text) }
+        _chatItems.update { it + ChatItem("user", text) }
+        _chatThinking.value = true
+        _chatError.value = null
+        viewModelScope.launch {
+            when (val r = repo.chat(text, history, chatName, chatEmail)) {
+                is Result.Success -> {
+                    val reply = r.data.reply ?: "I'm having a little trouble connecting. Please try again or call us at 732-COVERED!"
+                    _chatItems.update { it + ChatItem("bot", reply) }
+                }
+                is Result.Failure -> _chatError.value = r.message
+            }
+            _chatThinking.value = false
+        }
+    }
+
+    fun loadNews() {
+        viewModelScope.launch {
+            _news.update { UiState(loading = true) }
+            when (val r = repo.news()) {
+                is Result.Success -> _news.update { UiState(data = r.data) }
+                is Result.Failure -> _news.update { UiState(error = r.message) }
+            }
+        }
+    }
+
+    fun loadAdminLeads(password: String) {
+        viewModelScope.launch {
+            _adminLeads.update { UiState(loading = true) }
+            when (val r = repo.adminLeads(password)) {
+                is Result.Success -> _adminLeads.update { UiState(data = r.data.leads ?: emptyList()) }
+                is Result.Failure -> _adminLeads.update { UiState(error = r.message) }
+            }
+        }
+    }
+
+    fun resetAdminLeads() = _adminLeads.update { UiState() }
+
+    fun submitAgentRequest(name: String, email: String, phone: String?, notes: String?) {
+        viewModelScope.launch {
+            _agentRequest.update { UiState(loading = true) }
+            when (val r = repo.agentRequest(name, email, phone, notes)) {
+                is Result.Success -> _agentRequest.update { UiState(data = true) }
+                is Result.Failure -> _agentRequest.update { UiState(error = r.message) }
+            }
+        }
+    }
+
+    fun resetAgentRequest() = _agentRequest.update { UiState() }
 }

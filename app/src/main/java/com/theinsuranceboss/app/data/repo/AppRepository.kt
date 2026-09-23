@@ -4,13 +4,20 @@ import android.net.Uri
 import com.google.gson.Gson
 import com.theinsuranceboss.app.BuildConfig
 import com.theinsuranceboss.app.data.api.AddPolicyRequest
+import com.theinsuranceboss.app.data.api.AdminLeadsRequest
+import com.theinsuranceboss.app.data.api.AdminLeadsResponse
+import com.theinsuranceboss.app.data.api.AgentRequest
 import com.theinsuranceboss.app.data.api.ApiError
 import com.theinsuranceboss.app.data.api.AuthResponse
 import com.theinsuranceboss.app.data.api.BookCallRequest
 import com.theinsuranceboss.app.data.api.CalculatorRequest
 import com.theinsuranceboss.app.data.api.CalculatorResponse
+import com.theinsuranceboss.app.data.api.ChatMessageDto
+import com.theinsuranceboss.app.data.api.ChatRequest
+import com.theinsuranceboss.app.data.api.ChatResponse
 import com.theinsuranceboss.app.data.api.ContentResponse
 import com.theinsuranceboss.app.data.api.LoginRequest
+import com.theinsuranceboss.app.data.api.NewsResponse
 import com.theinsuranceboss.app.data.api.OkResponse
 import com.theinsuranceboss.app.data.api.PoliciesResponse
 import com.theinsuranceboss.app.data.api.QuoteRequest
@@ -294,4 +301,31 @@ class AppRepository(private val session: SessionStore) {
             null
         }
     }
+
+    suspend fun chat(
+        message: String,
+        history: List<ChatMessageDto>,
+        userName: String?,
+        userEmail: String?,
+    ): Result<ChatResponse> = wrap {
+        api.chat(ChatRequest(message = message, history = history, userName = userName, userEmail = userEmail))
+    }
+
+    suspend fun news(): Result<NewsResponse> = wrap { api.news() }
+
+    suspend fun adminLeads(password: String, source: String? = null): Result<AdminLeadsResponse> =
+        wrap { api.adminLeads(AdminLeadsRequest(password = password, source = source)) }
+
+    suspend fun agentRequest(name: String, email: String, phone: String?, notes: String?): Result<OkResponse> =
+        wrap {
+            api.agentRequest(
+                AgentRequest(
+                    name = name,
+                    email = email,
+                    phone = phone,
+                    notes = notes,
+                    token = session.token(),
+                )
+            )
+        }
 }

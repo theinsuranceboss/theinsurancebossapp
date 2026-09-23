@@ -24,29 +24,25 @@ val BossBorder = Color(0xFF3F3F46)
 val BossError = Color(0xFFF87171)
 val BossSuccess = Color(0xFF4ADE80)
 
-val LeagueSpartan = FontFamily(
-    Font(R.font.league_spartan, FontWeight.Normal),
-    Font(R.font.league_spartan, FontWeight.Medium),
-    Font(R.font.league_spartan, FontWeight.SemiBold),
-    Font(R.font.league_spartan, FontWeight.Bold),
-    Font(R.font.league_spartan, FontWeight.ExtraBold),
-    Font(R.font.league_spartan, FontWeight.Black),
+val Bitter = FontFamily(
+    Font(R.font.bitter, FontWeight.Light),
+    Font(R.font.bitter, FontWeight.Normal),
+    Font(R.font.bitter, FontWeight.Medium),
+    Font(R.font.bitter, FontWeight.SemiBold),
+    Font(R.font.bitter, FontWeight.Bold),
+    Font(R.font.bitter, FontWeight.ExtraBold),
+    Font(R.font.bitter, FontWeight.Black),
 )
 
-val Montserrat = FontFamily(
-    Font(R.font.montserrat, FontWeight.Normal),
-    Font(R.font.montserrat, FontWeight.Medium),
-    Font(R.font.montserrat, FontWeight.SemiBold),
-    Font(R.font.montserrat, FontWeight.Bold),
-    Font(R.font.montserrat, FontWeight.ExtraBold),
-    Font(R.font.montserrat, FontWeight.Black),
+val JetBrainsMono = FontFamily(
+    Font(R.font.jetbrainsmono, FontWeight.Normal),
+    Font(R.font.jetbrainsmono, FontWeight.Medium),
+    Font(R.font.jetbrainsmono, FontWeight.SemiBold),
+    Font(R.font.jetbrainsmono, FontWeight.Bold),
+    Font(R.font.jetbrainsmono, FontWeight.ExtraBold),
 )
 
-val SignatureScript = FontFamily(
-    Font(R.font.great_vibes, FontWeight.Normal),
-)
-
-val BossAccentFont = SignatureScript
+val BossAccentFont = Bitter
 
 private val BossColors = darkColorScheme(
     primary = BossGold,
@@ -66,97 +62,97 @@ private val BossColors = darkColorScheme(
 
 private val BossTypography = Typography(
     displayLarge = TextStyle(
-        fontFamily = LeagueSpartan,
+        fontFamily = Bitter,
         fontWeight = FontWeight.Black,
         fontSize = 42.sp,
         lineHeight = 48.sp,
         letterSpacing = (-0.5).sp,
     ),
     displayMedium = TextStyle(
-        fontFamily = LeagueSpartan,
+        fontFamily = Bitter,
         fontWeight = FontWeight.ExtraBold,
         fontSize = 34.sp,
         lineHeight = 40.sp,
         letterSpacing = (-0.3).sp,
     ),
     headlineLarge = TextStyle(
-        fontFamily = LeagueSpartan,
+        fontFamily = Bitter,
         fontWeight = FontWeight.ExtraBold,
         fontSize = 30.sp,
         lineHeight = 36.sp,
         letterSpacing = (-0.3).sp,
     ),
     headlineMedium = TextStyle(
-        fontFamily = LeagueSpartan,
+        fontFamily = Bitter,
         fontWeight = FontWeight.Bold,
         fontSize = 26.sp,
         lineHeight = 32.sp,
         letterSpacing = (-0.2).sp,
     ),
     headlineSmall = TextStyle(
-        fontFamily = LeagueSpartan,
+        fontFamily = Bitter,
         fontWeight = FontWeight.Bold,
         fontSize = 22.sp,
         lineHeight = 28.sp,
     ),
     titleLarge = TextStyle(
-        fontFamily = LeagueSpartan,
+        fontFamily = Bitter,
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp,
         lineHeight = 24.sp,
     ),
     titleMedium = TextStyle(
-        fontFamily = Montserrat,
-        fontWeight = FontWeight.Bold,
+        fontFamily = Bitter,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp,
         lineHeight = 20.sp,
-        letterSpacing = 0.4.sp,
+        letterSpacing = 0.2.sp,
     ),
     titleSmall = TextStyle(
-        fontFamily = Montserrat,
+        fontFamily = JetBrainsMono,
         fontWeight = FontWeight.SemiBold,
         fontSize = 12.sp,
         lineHeight = 16.sp,
-        letterSpacing = 0.6.sp,
+        letterSpacing = 0.4.sp,
     ),
     bodyLarge = TextStyle(
-        fontFamily = Montserrat,
-        fontWeight = FontWeight.Medium,
+        fontFamily = Bitter,
+        fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
     ),
     bodyMedium = TextStyle(
-        fontFamily = Montserrat,
+        fontFamily = Bitter,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 20.sp,
     ),
     bodySmall = TextStyle(
-        fontFamily = Montserrat,
+        fontFamily = Bitter,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 16.sp,
     ),
     labelLarge = TextStyle(
-        fontFamily = LeagueSpartan,
+        fontFamily = JetBrainsMono,
         fontWeight = FontWeight.Bold,
-        fontSize = 15.sp,
+        fontSize = 14.sp,
         lineHeight = 18.sp,
-        letterSpacing = 1.2.sp,
+        letterSpacing = 1.0.sp,
     ),
     labelMedium = TextStyle(
-        fontFamily = LeagueSpartan,
+        fontFamily = JetBrainsMono,
         fontWeight = FontWeight.Bold,
         fontSize = 12.sp,
         lineHeight = 16.sp,
-        letterSpacing = 1.4.sp,
+        letterSpacing = 1.2.sp,
     ),
     labelSmall = TextStyle(
-        fontFamily = LeagueSpartan,
+        fontFamily = JetBrainsMono,
         fontWeight = FontWeight.Bold,
         fontSize = 11.sp,
         lineHeight = 14.sp,
-        letterSpacing = 1.6.sp,
+        letterSpacing = 1.4.sp,
     ),
 )
 

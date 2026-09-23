@@ -19,9 +19,8 @@ Native Android lead-generation app for [theinsuranceboss.com](https://theinsuran
 | Black | `#000000` (backgrounds) |
 | Dark Gray | `#333333` (elements) |
 | Light Gray | `#D9D9D9` (accents / body text) |
-| Headlines | League Spartan (Bold / ExtraBold / Black) |
-| Body / captions | Montserrat |
-| Accent script | Great Vibes (highlights) |
+| Headlines / body | Bitter (Light–Black variable) |
+| Labels / buttons | JetBrains Mono (Bold, uppercase) |
 | Phone | 732-COVERED (268-3373) → `+17322683373` |
 | Email | info@theinsuranceboss.com |
 

@@ -146,6 +146,69 @@ data class SignupRequest(
 
 data class LoginRequest(val login: String, val password: String)
 
+data class ChatMessageDto(val role: String, val text: String)
+
+data class ChatRequest(
+    val message: String,
+    val history: List<ChatMessageDto> = emptyList(),
+    val userName: String? = null,
+    val userEmail: String? = null,
+)
+
+data class ChatResponse(val ok: Boolean, val reply: String? = null, val error: String? = null)
+
+data class NewsArticleDto(
+    val id: String? = null,
+    val title: String? = null,
+    val excerpt: String? = null,
+    val body: String? = null,
+    val content: String? = null,
+    val categoryId: String? = null,
+    val category: String? = null,
+    val imageUrl: String? = null,
+    val publishedAt: String? = null,
+    @SerializedName("created_at") val createdAt: String? = null,
+    val date: String? = null,
+    val author: String? = null,
+)
+
+data class NewsCategoryDto(
+    val id: String? = null,
+    val name: String? = null,
+)
+
+data class NewsResponse(
+    val ok: Boolean,
+    val articles: List<NewsArticleDto>? = null,
+    val categories: List<NewsCategoryDto>? = null,
+    val error: String? = null,
+)
+
+data class AdminLeadsRequest(val password: String, val source: String? = null)
+
+data class LeadDto(
+    @SerializedName("_id") val id: String? = null,
+    val name: String? = null,
+    val email: String? = null,
+    val phone: String? = null,
+    val source: String? = null,
+    val kind: String? = null,
+    val status: String? = null,
+    val notes: String? = null,
+    val details: String? = null,
+    @SerializedName("created_at") val createdAt: Long? = null,
+)
+
+data class AdminLeadsResponse(val ok: Boolean, val leads: List<LeadDto>? = null, val error: String? = null)
+
+data class AgentRequest(
+    val name: String,
+    val email: String,
+    val phone: String? = null,
+    val notes: String? = null,
+    val token: String? = null,
+)
+
 interface BossApi {
     @GET("api/app/health")
     suspend fun health(): HealthResponse
@@ -206,4 +269,16 @@ interface BossApi {
         @Part("token") token: RequestBody?,
         @Part photos: List<MultipartBody.Part>,
     ): OkResponse
+
+    @POST("api/app/chat")
+    suspend fun chat(@Body body: ChatRequest): ChatResponse
+
+    @GET("api/app/news")
+    suspend fun news(): NewsResponse
+
+    @POST("api/app/admin/leads")
+    suspend fun adminLeads(@Body body: AdminLeadsRequest): AdminLeadsResponse
+
+    @POST("api/app/agent-request")
+    suspend fun agentRequest(@Body body: AgentRequest): OkResponse
 }
