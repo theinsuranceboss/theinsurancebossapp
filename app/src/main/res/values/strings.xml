@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The Insurance Boss</string>
+    <string name="tagline">Smart Coverage, Serious Protection</string>
+    <string name="phone_display">732-COVERED (268-3373)</string>
+    <string name="call_agent">Call Agent</string>
+    <string name="get_quote">Get a Quote</string>
+    <string name="policy_audit">Free Policy Audit</string>
+    <string name="calculator">Coverage Calculator</string>
+    <string name="call_text">Call / Text an Agent</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="licensed_disclosure">Availability of products and eligibility may vary by state. A licensed agent will contact you. No coverage is guaranteed unless bound by a carrier.</string>
+    <string name="no_guaranteed_approval">We do not guarantee approval. Quotes are subject to underwriting and carrier guidelines.</string>
+    <string name="referral_disclaimer">Referral rewards are disabled by default and subject to state anti-rebating laws. Enable only where permitted.</string>
+</resources>

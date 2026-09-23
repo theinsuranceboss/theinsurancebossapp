@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="boss_gold">#FAC000</color>
+    <color name="boss_black">#000000</color>
+    <color name="boss_surface">#09090B</color>
+    <color name="boss_on_surface">#F4F4F5</color>
+    <color name="boss_zinc_400">#A1A1AA</color>
+    <color name="boss_zinc_800">#27272A</color>
+    <color name="boss_white">#FFFFFF</color>
+    <color name="boss_error">#F87171</color>
+    <color name="boss_success">#4ADE80</color>
+    <color name="ic_launcher_background">#000000</color>
+</resources>
