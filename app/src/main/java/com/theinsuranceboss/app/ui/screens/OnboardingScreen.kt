@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.theinsuranceboss.app.ui.components.BossPrimaryButton
 import com.theinsuranceboss.app.ui.nav.Routes
+import com.theinsuranceboss.app.ui.theme.BossAccentFont
 import com.theinsuranceboss.app.ui.theme.BossGold
 import com.theinsuranceboss.app.ui.theme.BossMuted
 import kotlinx.coroutines.launch
@@ -66,7 +67,7 @@ fun OnboardingScreen(onDone: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text("THE INSURANCE BOSS", color = BossGold, style = MaterialTheme.typography.labelMedium)
-            TextButton(onClick = onDone) { Text("Skip", color = BossMuted) }
+            TextButton(onClick = onDone) { Text("Skip", color = BossMuted, style = MaterialTheme.typography.bodySmall) }
         }
 
         Spacer(Modifier.height(24.dp))
@@ -94,7 +95,7 @@ fun OnboardingScreen(onDone: () -> Unit) {
                 Text(
                     page.title,
                     color = Color.White,
-                    style = MaterialTheme.typography.headlineMedium,
+                    style = MaterialTheme.typography.headlineLarge,
                     textAlign = TextAlign.Center,
                 )
                 Spacer(Modifier.height(16.dp))
@@ -102,6 +103,13 @@ fun OnboardingScreen(onDone: () -> Unit) {
                     page.body,
                     color = BossMuted,
                     style = MaterialTheme.typography.bodyLarge,
+                    textAlign = TextAlign.Center,
+                )
+                Spacer(Modifier.height(28.dp))
+                Text(
+                    "Be the Boss",
+                    color = BossGold,
+                    style = MaterialTheme.typography.displayMedium.copy(fontFamily = BossAccentFont),
                     textAlign = TextAlign.Center,
                 )
             }

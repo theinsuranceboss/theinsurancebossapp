@@ -37,7 +37,7 @@ import com.theinsuranceboss.app.ui.theme.BossBorder
 import com.theinsuranceboss.app.ui.theme.BossGold
 import com.theinsuranceboss.app.ui.theme.BossMuted
 import com.theinsuranceboss.app.ui.theme.BossSurface
-import com.theinsuranceboss.app.ui.theme.MonoFont
+import com.theinsuranceboss.app.ui.theme.LeagueSpartan
 
 @Composable
 fun BossCard(
@@ -87,7 +87,7 @@ fun BossPrimaryButton(
             )
         } else {
             Text(
-                text = text,
+                text = text.uppercase(),
                 style = MaterialTheme.typography.labelLarge,
             )
         }
@@ -110,7 +110,11 @@ fun BossOutlineButton(
         shape = RoundedCornerShape(12.dp),
         border = androidx.compose.foundation.BorderStroke(1.5.dp, BossGold),
     ) {
-        Text(text = text, color = BossGold, style = MaterialTheme.typography.labelLarge)
+        Text(
+            text = text.uppercase(),
+            color = BossGold,
+            style = MaterialTheme.typography.labelLarge,
+        )
     }
 }
 
@@ -121,7 +125,7 @@ fun SectionLabel(text: String, modifier: Modifier = Modifier) {
         modifier = modifier,
         style = MaterialTheme.typography.labelSmall,
         color = BossGold,
-        fontFamily = MonoFont,
+        fontFamily = LeagueSpartan,
     )
 }
 

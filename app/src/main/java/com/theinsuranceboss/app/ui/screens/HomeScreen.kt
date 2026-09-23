@@ -77,7 +77,7 @@ fun HomeScreen(
                 Text(
                     userName ?: "The Insurance Boss",
                     color = Color.White,
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.headlineMedium,
                 )
             }
             Box(
@@ -121,7 +121,7 @@ fun HomeScreen(
                     BossCard(
                         Modifier
                             .weight(1f)
-                            .height(150.dp)
+                            .height(170.dp)
                             .clickable {
                                 if (route == "call") callAgent() else onNav(route)
                             },
@@ -130,7 +130,7 @@ fun HomeScreen(
                         Spacer(Modifier.height(12.dp))
                         Text(title, color = Color.White, style = MaterialTheme.typography.titleLarge)
                         Spacer(Modifier.height(4.dp))
-                        Text(sub, color = BossMuted, style = MaterialTheme.typography.bodySmall)
+                        Text(sub, color = BossMuted, style = MaterialTheme.typography.bodySmall, maxLines = 2)
                     }
                 }
             }
@@ -159,7 +159,7 @@ fun HomeScreen(
                     BossCard(
                         Modifier
                             .weight(1f)
-                            .height(120.dp)
+                            .height(140.dp)
                             .clickable { onNav(route) },
                     ) {
                         Icon(icon, contentDescription = null, tint = BossGold, modifier = Modifier.size(24.dp))

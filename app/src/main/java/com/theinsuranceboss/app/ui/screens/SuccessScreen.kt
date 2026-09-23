@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.theinsuranceboss.app.ui.components.BossPrimaryButton
 import com.theinsuranceboss.app.ui.components.DisclosureText
 import com.theinsuranceboss.app.ui.components.SectionLabel
+import com.theinsuranceboss.app.ui.theme.BossAccentFont
 import com.theinsuranceboss.app.ui.theme.BossGold
 import com.theinsuranceboss.app.ui.theme.BossMuted
 
@@ -56,7 +57,14 @@ fun SuccessScreen(
         Text(
             title,
             color = Color.White,
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineLarge,
+            textAlign = TextAlign.Center,
+        )
+        Spacer(Modifier.height(8.dp))
+        Text(
+            "Be the Boss",
+            color = BossGold,
+            style = MaterialTheme.typography.headlineMedium.copy(fontFamily = BossAccentFont),
             textAlign = TextAlign.Center,
         )
         Spacer(Modifier.height(12.dp))
