@@ -35,7 +35,7 @@ Requirements:
 ```powershell
 $env:JAVA_HOME = 'C:\path\to\jdk-17'
 $env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
-gradle assembleDebug   # or open in Android Studio
+.\gradlew.bat assembleDebug   # or open in Android Studio
 ```
 
 APK: `app/build/outputs/apk/debug/app-debug.apk`
@@ -96,8 +96,12 @@ Scaffold only. Place `google-services.json`, apply the Google Services Gradle pl
 ## E2E verified
 
 - Debug APK built and installed on `emulator-5554`
-- Quote submitted from UI → success screen with source tag
-- Convex `app_leads` row confirmed: `source=android_app_quote`
+- Quote UI → Convex `app_leads` `source=android_app_quote`
+- Calculator report UI → Convex `source=android_app_calculator`
+- Book a Call UI → Convex `source=android_app_book_call` (+ appointments row)
+- Free Policy Audit UI (photo picker + multipart upload) → Convex `source=android_app_audit`
+- REST paths also verified: `POST /calculator`, `POST /audit` (multipart)
+- Gradle wrapper (`gradlew` / `gradlew.bat` + `gradle/wrapper/*`) for reproducible builds
 
 ## Repo
 
